@@ -1,5 +1,6 @@
-package com.loop.troop.design.solid.single_responsibility.following;
+package com.loop.troop.design.solid.open_closed.following.persitence;
 
+import com.loop.troop.design.solid.open_closed.following.ShoppingCart;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.stream.Collectors;
@@ -8,7 +9,7 @@ import java.util.stream.Collectors;
  * The type Shopping cart storage.
  */
 @Log4j2
-public class ShoppingCartStorage {
+public class ShoppingCartOracleStorage implements PersistenceStorage {
 
     /**
      * The Shopping cart.
@@ -20,7 +21,7 @@ public class ShoppingCartStorage {
      *
      * @param shoppingCart the shopping cart
      */
-    public ShoppingCartStorage(ShoppingCart shoppingCart) {
+    public ShoppingCartOracleStorage(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
 
@@ -37,6 +38,6 @@ public class ShoppingCartStorage {
      */
     public void saveToDb(){
         String productDetails = shoppingCart.getProducts().stream().map(product -> String.format("[product name : %s , product price: %s ]", product.getName(), product.getPrice())).collect(Collectors.joining(",\n"));
-        log.info("\nSaving shopping cart details to db: \n{}",productDetails);
+        log.info("\nSaving shopping cart details to oracle db: \n{}",productDetails);
     }
 }

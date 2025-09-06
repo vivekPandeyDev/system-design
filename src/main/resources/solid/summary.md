@@ -33,6 +33,17 @@ class InvoiceRepository {
 }
 ```
 
+**Single Responsibility Principle (SRP):** A class should have only one reason to change; it can have multiple methods, but all must serve a single responsibility.
+
+**Delegation:** Classes implement their own functionality and delegate unrelated tasks.
+
+**Example Responsibilities:**
+- `Product` → holds product data.
+- `ShoppingCart` → manages products / calculate total 
+- `ShoppingCartPrinter` → prints the invoice.
+- `ShoppingCartStorage` → saves cart details to DB/log.
+
+**Benefits:** Clear structure, easier testing, maintainability, and flexible code.
 ---
 
 ## 2. Open/Closed Principle (OCP)

@@ -1,4 +1,4 @@
-package com.loop.troop.design.solid.single_responsibility.following;
+package com.loop.troop.design.solid.open_closed.not_following;
 
 import lombok.extern.log4j.Log4j2;
 

@@ -39,3 +39,4 @@ build/
 /logs/application.log
 /.idea/misc.xml
 /.idea/workspace.xml
+/.idea/intellij-javadocs-4.0.1.xml

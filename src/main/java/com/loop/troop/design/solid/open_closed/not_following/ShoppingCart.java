@@ -1,8 +1,8 @@
-package com.loop.troop.design.solid.single_responsibility.following;
+package com.loop.troop.design.solid.open_closed.not_following;
+
 
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,11 +79,12 @@ public class ShoppingCart {
         Product product2 = new Product("Keyboard",BigDecimal.TEN);
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.addProduct(List.of(product,product2));
-        // delegate to other - only handle single responsibility by itself like calculateTotal price, it doesn't mean only one method
         ShoppingCartPrinter shoppingCartPrinter = new ShoppingCartPrinter(shoppingCart);
-        ShoppingCartStorage shoppingCartStorage = new ShoppingCartStorage(shoppingCart);
 
+        // every time new requirement we need to update ShoppingCartStorage class
+        ShoppingCartStorage shoppingCartStorage = new ShoppingCartStorage(shoppingCart);
         shoppingCartPrinter.printInvoice();
-        shoppingCartStorage.saveToDb();
+        shoppingCartStorage.saveToOracleDb();
+        shoppingCartStorage.saveToMongoDb();
     }
 }

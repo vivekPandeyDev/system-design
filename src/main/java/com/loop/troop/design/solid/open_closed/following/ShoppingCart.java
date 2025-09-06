@@ -1,5 +1,8 @@
-package com.loop.troop.design.solid.single_responsibility.following;
+package com.loop.troop.design.solid.open_closed.following;
 
+import com.loop.troop.design.solid.open_closed.following.persitence.PersistenceStorage;
+import com.loop.troop.design.solid.open_closed.following.persitence.ShoppingCartMongoStorage;
+import com.loop.troop.design.solid.open_closed.following.persitence.ShoppingCartOracleStorage;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
 
@@ -79,11 +82,16 @@ public class ShoppingCart {
         Product product2 = new Product("Keyboard",BigDecimal.TEN);
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.addProduct(List.of(product,product2));
-        // delegate to other - only handle single responsibility by itself like calculateTotal price, it doesn't mean only one method
         ShoppingCartPrinter shoppingCartPrinter = new ShoppingCartPrinter(shoppingCart);
-        ShoppingCartStorage shoppingCartStorage = new ShoppingCartStorage(shoppingCart);
 
+        // Instead of tightly coupling to a concrete class, use an abstraction (interface or abstract class) to define the saving behavior of the shopping cart.
+        // Delegate the actual saving logic to a concrete implementation.
+        // At runtime, polymorphism ensures that the correct implementation is invoked, allowing flexibility and adherence to the Open/Closed Principle.
+
+        PersistenceStorage mongoPersistenceStorage = new ShoppingCartMongoStorage(shoppingCart);
+        PersistenceStorage oraclePersistenceStorage = new ShoppingCartOracleStorage(shoppingCart);
         shoppingCartPrinter.printInvoice();
-        shoppingCartStorage.saveToDb();
+        mongoPersistenceStorage.saveToDb();
+        oraclePersistenceStorage.saveToDb();
     }
 }
