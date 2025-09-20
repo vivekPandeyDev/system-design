@@ -6,10 +6,10 @@ import lombok.extern.log4j.Log4j2;
 import java.util.Objects;
 
 @Log4j2
-public class LogNotifier implements StockNotifier{
+public class StockMakerSubjectNotifier implements StockNotifier{
     private StockMarketSubject stockMarketSubject;
 
-    public LogNotifier(StockMarketSubject stockMarketSubject) {
+    public StockMakerSubjectNotifier(StockMarketSubject stockMarketSubject) {
         Objects.requireNonNull(stockMarketSubject,"Must be a not null stock market subject instance");
         this.stockMarketSubject = stockMarketSubject;
     }
