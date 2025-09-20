@@ -12,7 +12,7 @@ public class Runner {
 
     public static void main(String[] args) {
         StockMarketObserverManager stockMarketObserverManager = new StockMarketObserverManager();
-        StockNotifier logNotifier = new StockNotifierImpl(stockMarketObserverManager);
+        StockNotifier logNotifier = new LogNotifier(stockMarketObserverManager);
         StockNotifier emailNotifier =  new EmailNotifier(stockMarketObserverManager);
         StockMarketService stockService = new StockMarketServiceImpl(List.of(logNotifier,emailNotifier));
         // Add observers
