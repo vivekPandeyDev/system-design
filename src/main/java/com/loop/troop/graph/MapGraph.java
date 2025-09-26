@@ -3,6 +3,7 @@ package com.loop.troop.graph;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Log4j2
 class MapGraph implements MutableGraph {
@@ -37,7 +38,26 @@ class MapGraph implements MutableGraph {
 
     @Override
     public void printGraph() {
-        adj.forEach((k, v) -> log.info("{} -> {}",k,v));
+        StringBuilder sb = new StringBuilder();
+        sb.append("Graph adjacency list (MapGraph):\n");
+        sb.append("--------------------------------\n");
+
+        // Process all vertices sorted
+        Set<Integer> vertices = getAllVertices().stream()
+                .sorted()
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+
+        for (Integer vertex : vertices) {
+            List<Integer> neighbors = getNeighbors(vertex);
+            String edges = neighbors.isEmpty() ? "None"
+                    : neighbors.stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(" → "));
+            sb.append(String.format("%3d : %s%n", vertex, edges));
+        }
+
+        // Single log statement
+        log.info("\n{}", sb.toString());
     }
 
     @Override

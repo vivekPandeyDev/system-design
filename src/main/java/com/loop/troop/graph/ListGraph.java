@@ -47,9 +47,21 @@ public record ListGraph(List<List<Integer>> adj) implements Graph {
 
     @Override
     public void printGraph() {
-        for (int i = 0; i < adj.size(); i++) {
-            log.info("{} -> {}", i, adj.get(i));
+        StringBuilder sb = new StringBuilder();
+        sb.append("Graph adjacency list (ListGraph):\n");
+        sb.append("---------------------------------\n");
+
+        for (int vertex = 0; vertex < adj.size(); vertex++) {
+            List<Integer> neighbors = getNeighbors(vertex);
+            String edges = neighbors.isEmpty() ? "None"
+                    : neighbors.stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(" → "));
+            sb.append(String.format("%3d : %s%n", vertex, edges));
         }
+
+        // Log the entire graph in a single message
+        log.info("\n{}", sb.toString());
     }
 
     @Override
