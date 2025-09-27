@@ -1,9 +1,10 @@
 package com.loop.troop.graph;
 
+import com.loop.troop.graph.cycle.BfsUndirectedCycleDetection;
+import com.loop.troop.graph.cycle.CycleDetectionStrategy;
 import com.loop.troop.graph.traversal.BFSTraversal;
 import com.loop.troop.graph.traversal.DFSTraversal;
 import com.loop.troop.graph.traversal.GraphTraversal;
-import com.loop.troop.graph.traversal.GraphTraversalManager;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.stream.IntStream;
@@ -27,16 +28,19 @@ public class GraphDemo {
             mg.addVertex(99);
             mg.addEdge(2, 99);
             mg.addEdge(99,100);
-            log.info("After adding vertex 99:");
+            log.info("After adding vertex 99");
             mg.printGraph();
         }
 
         GraphTraversal bfs = new BFSTraversal();
         GraphTraversal dfs = new DFSTraversal();
-        GraphTraversalManager manager = new GraphTraversalManager(bfs);
+        CycleDetectionStrategy cycleDetection= new BfsUndirectedCycleDetection();
+        GraphManager manager = new GraphManager(bfs,cycleDetection);
         log.info("BFS: {}" , manager.traverseFromNode(g1,0 ));
-        manager.setStrategy(dfs);
+        manager.setGraphTraversalStrategy(dfs);
         log.info("DFS: {}" , manager.traverseAll(g2 ));
+        log.info("Is cycle present for map graph : {}",manager.isContainCycle(g1));
+        log.info("Is cycle present for list graph : {}",manager.isContainCycle(g2));
     }
 
     private static void useGraph(String name,int vertex, Graph g) {
