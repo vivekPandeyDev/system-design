@@ -1,0 +1,29 @@
+<List>
+    <Map>
+        <name>Charlie</name>
+        <age>35</age>
+        <city>Chicago</city>
+        <email>charlie@example.com</email>
+        <department>Operations</department>
+        <salary>60000</salary>
+        <isActive>true</isActive>
+    </Map>
+    <Map>
+        <name>Diana</name>
+        <age>28</age>
+        <city>Houston</city>
+        <email>diana@example.com</email>
+        <department>Marketing</department>
+        <salary>58000</salary>
+        <isActive>true</isActive>
+    </Map>
+    <Map>
+        <name>Frank</name>
+        <age>50</age>
+        <city>Seattle</city>
+        <email>frank@example.com</email>
+        <department>Engineering</department>
+        <salary>90000</salary>
+        <isActive>false</isActive>
+    </Map>
+</List>

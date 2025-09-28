@@ -1,0 +1,5 @@
+[
+  { "name": "Alice", "age": 30, "city": "New York", "email": "alice@example.com", "department": "HR", "salary": 55000, "isActive": true },
+  { "name": "Bob", "age": 25, "city": "Los Angeles", "email": "bob@example.com", "department": "Engineering", "salary": 65000, "isActive": true },
+  { "name": "Eve", "age": 40, "city": "San Francisco", "email": "eve@example.com", "department": "Finance", "salary": 75000, "isActive": false }
+]
